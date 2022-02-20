@@ -1,0 +1,76 @@
+﻿<Window x:Class="RestaurantAppWpf.UI.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:RestaurantAppWpf.UI"
+        xmlns:uc="clr-namespace:RestaurantAppWpf.UI.UserControls"
+        xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+        mc:Ignorable="d"
+        Height="450" Width="800"
+        ResizeMode="NoResize"
+        WindowStyle="None"
+        Background="Transparent"
+        AllowsTransparency="True">
+    <Window.DataContext>
+        <viewModel:MainViewModel/>
+    </Window.DataContext>
+    <Border CornerRadius="30"
+            Background="#EED6C4">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="70"/>
+                <RowDefinition/>
+            </Grid.RowDefinitions>
+            <Border CornerRadius="30,30,0,0"
+                    Background="#483434"
+                    Grid.ColumnSpan="2">
+                <DockPanel VerticalAlignment="Center">
+                    <Image Source="/Icons/restaurant.png"
+                           Width="55"
+                           Height="55"/>
+                    <TextBlock Text="RestaurantAppWpf" 
+                               FontSize="24"
+                               FontWeight="Bold"
+                               Foreground="#FFEFE3"
+                               Margin="15,0,0,0"
+                               VerticalAlignment="Center"/>
+                    <Button Content="X"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource HeaderButtonStyle}" Cursor="Hand"/>
+                    <Button Content="—"
+                            DockPanel.Dock="Right"
+                            Style="{StaticResource HeaderButtonStyle}"/>
+                    <uc:IconButton HorizontalAlignment="Right"
+                                   Icon="/Icons/setting.png"
+                                   Style="{StaticResource HeaderSettingButtonStyle}" Cursor="Hand"/>
+                </DockPanel>
+            </Border>
+            <Border CornerRadius="0,0,0,30"
+                    Background="#6B4F4F"
+                    Grid.Row="1">
+                <StackPanel Margin="0,15,0,0">
+                    <uc:MenuButton Content="Головна"
+                                   Image="/Icons/home.png"
+                                   IsChecked="True"
+                                   Style="{StaticResource MenuButtonStyle}" Cursor="Hand"
+                                   Command="{Binding HomeCommand}"/>
+                    <uc:MenuButton Content="Меню"
+                                   Image="/Icons/menu.png"
+                                   Style="{StaticResource MenuButtonStyle}" Cursor="Hand"
+                                   Command="{Binding MenuCommand}"/>
+                    <uc:MenuButton Content="Кошик"
+                                   Image="/Icons/cart.png"
+                                   Style="{StaticResource MenuButtonStyle}" Cursor="Hand"/>
+                </StackPanel>
+            </Border>
+            <ContentControl Grid.Column="1"
+                            Grid.Row="1"
+                            Content="{Binding CurrentView}"/>
+        </Grid>
+    </Border>
+</Window>

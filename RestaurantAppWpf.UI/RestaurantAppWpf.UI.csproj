@@ -1,0 +1,38 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net6.0-windows</TargetFramework>
+    <Nullable>disable</Nullable>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Icons\cart.png" />
+    <None Remove="Icons\home.png" />
+    <None Remove="Icons\menu.png" />
+    <None Remove="Icons\restaurant.png" />
+    <None Remove="Icons\setting.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\RestaurantAppWpf.BL.Models\RestaurantAppWpf.BL.Models.csproj" />
+    <ProjectReference Include="..\RestaurantAppWpf.BL\RestaurantAppWpf.BL.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Icons\cart.png" />
+    <Resource Include="Icons\home.png" />
+    <Resource Include="Icons\menu.png" />
+    <Resource Include="Icons\restaurant.png" />
+    <Resource Include="Icons\setting.png" />
+  </ItemGroup>
+
+</Project>

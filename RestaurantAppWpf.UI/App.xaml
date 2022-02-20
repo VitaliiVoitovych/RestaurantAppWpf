@@ -1,0 +1,23 @@
+﻿<Application x:Class="RestaurantAppWpf.UI.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:RestaurantAppWpf.UI"
+             xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+             xmlns:view="clr-namespace:RestaurantAppWpf.UI.MVVM.View"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary Source="Styles/HeaderButton.xaml"/>
+                <ResourceDictionary Source="Styles/MenuButton.xaml"/>
+                <ResourceDictionary Source="Styles/HeaderSettingButton.xaml"/>
+            </ResourceDictionary.MergedDictionaries>
+            <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
+                <view:HomeView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
+                <view:MenuView/>
+            </DataTemplate>
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>
