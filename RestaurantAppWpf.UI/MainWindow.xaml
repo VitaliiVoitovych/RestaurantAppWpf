@@ -7,11 +7,12 @@
         xmlns:uc="clr-namespace:RestaurantAppWpf.UI.UserControls"
         xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
         mc:Ignorable="d"
-        Height="450" Width="800"
+        Height="500" Width="800"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
-        AllowsTransparency="True">
+        AllowsTransparency="True"
+        x:Name="WindowMain">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>
@@ -41,13 +42,18 @@
                                VerticalAlignment="Center"/>
                     <Button Content="X"
                             DockPanel.Dock="Right"
-                            Style="{StaticResource HeaderButtonStyle}" Cursor="Hand"/>
+                            Style="{StaticResource HeaderButtonStyle}" Cursor="Hand"
+                            Command="{Binding CloseCommand}"
+                            CommandParameter="{Binding ElementName=WindowMain}"/>
                     <Button Content="—"
                             DockPanel.Dock="Right"
-                            Style="{StaticResource HeaderButtonStyle}"/>
+                            Style="{StaticResource HeaderButtonStyle}"
+                            Command="{Binding MinimizeCommand}"
+                            CommandParameter="{Binding ElementName=WindowMain}" Cursor="Hand"/>
                     <uc:IconButton HorizontalAlignment="Right"
                                    Icon="/Icons/setting.png"
-                                   Style="{StaticResource HeaderSettingButtonStyle}" Cursor="Hand"/>
+                                   Style="{StaticResource HeaderSettingButtonStyle}"
+                                   Command="{Binding SettingCommand}"/>
                 </DockPanel>
             </Border>
             <Border CornerRadius="0,0,0,30"

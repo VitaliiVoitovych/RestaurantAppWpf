@@ -1,0 +1,112 @@
+﻿<UserControl x:Class="RestaurantAppWpf.UI.MVVM.View.SettingView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RestaurantAppWpf.UI.MVVM.View"
+             xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="430" d:DesignWidth="650">
+    <UserControl.DataContext>
+        <viewModel:SettingViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.ColumnSpan="2"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Додавання нових елементів"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    Background="Transparent"
+                    VerticalAlignment="Center">
+            <TextBlock Text="Вид страви"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="24"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="Назва виду"
+                       Margin="15,15,0,0"
+                       Style="{StaticResource FieldTextStyle}"/>
+            <TextBox Margin="15,15,0,0"
+                     HorizontalAlignment="Left"
+                     Text="{Binding Path=TypeDish.Name}"
+                     Style="{StaticResource FieldTextBoxStyle}"/>
+            <Button Content="Додати"
+                    Margin="0,15,15,0"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource AddButtonStyle}"
+                    Command="{Binding AddTypeDishCommand}"
+                    CommandParameter="{Binding Db}" Cursor="Hand"/>
+        </StackPanel>
+        <StackPanel Grid.Column="0"
+                    Grid.Row="1">
+            <TextBlock Text="Страва"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="24"
+                       HorizontalAlignment="Center"/>
+            <WrapPanel>
+                <TextBlock Text="Назва"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <TextBox Margin="10,15,0,0"
+                         Text="{Binding Path=Dish.Name}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+                <TextBlock Text="Тип"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <ComboBox Width="200"
+                          Margin="15,15,0,0"
+                          ItemsSource="{Binding TypeDishes}"
+                          SelectedItem="{Binding Path=Dish.TypeDish}"/>
+                <TextBlock Text="Кілокалорії"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <TextBox Margin="10,15,0,0" 
+                         Text="{Binding Path=Dish.Kilocalories}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+                <TextBlock Text="Вага, г"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <TextBox Margin="10,15,0,0" 
+                         Text="{Binding Path=Dish.Weight}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+                <TextBlock Text="Ціна"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <TextBox Margin="10,15,0,0" 
+                         Text="{Binding Dish.Price}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+                <TextBlock Text="Зображення"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <Button Content="Вибрати"
+                    Margin="0,15,15,0"
+                    VerticalAlignment="Bottom"
+                    Style="{StaticResource AddButtonStyle}"
+                    Command="{Binding AddImage}"
+                    CommandParameter="{Binding Db}" Cursor="Hand"/>
+                <StackPanel Width="390">
+                    <Button Content="Додати"
+                            HorizontalAlignment="Right"
+                            VerticalAlignment="Center"
+                            Style="{StaticResource AddButtonStyle}"
+                            Command="{Binding AddDishCommand}"
+                            CommandParameter="{Binding Db}" Cursor="Hand"/>
+                </StackPanel>
+            </WrapPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

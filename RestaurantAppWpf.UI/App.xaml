@@ -11,12 +11,18 @@
                 <ResourceDictionary Source="Styles/HeaderButton.xaml"/>
                 <ResourceDictionary Source="Styles/MenuButton.xaml"/>
                 <ResourceDictionary Source="Styles/HeaderSettingButton.xaml"/>
+                <ResourceDictionary Source="Styles/FieldTextBox.xaml"/>
+                <ResourceDictionary Source="Styles/AddButton.xaml"/>
+                <ResourceDictionary Source="Styles/FieldText.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:MenuViewModel}">
                 <view:MenuView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:SettingViewModel}">
+                <view:SettingView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
