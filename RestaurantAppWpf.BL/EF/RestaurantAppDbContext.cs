@@ -12,6 +12,7 @@ namespace RestaurantAppWpf.BL.EF
         public DbSet<TypeDish> TypeDishes { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<Payment> Payments { get; set; }
+        public DbSet<CartItem> Cart { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {

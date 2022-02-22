@@ -40,8 +40,8 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         }
 
         public ObservableCollection<TypeDish> TypeDishes { get; }
-        public RelayCommand<RestaurantAppDbContext> AddTypeDishCommand { get; }
-        public RelayCommand<RestaurantAppDbContext> AddDishCommand { get; }
+        public RelayCommand AddTypeDishCommand { get; }
+        public RelayCommand AddDishCommand { get; }
         public RelayCommand AddImage { get; }
 
         public SettingViewModel()
@@ -50,15 +50,15 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             Dish = new Dish();
             Db.TypeDishes.Load();
             TypeDishes = Db.TypeDishes.Local.ToObservableCollection();
-            AddTypeDishCommand = new RelayCommand<RestaurantAppDbContext>((db) =>
+            AddTypeDishCommand = new RelayCommand(() =>
             {
-                db.TypeDishes.Add(TypeDish);
-                db.SaveChanges();
+                Db.TypeDishes.Add(TypeDish);
+                Db.SaveChanges();
             });
-            AddDishCommand = new RelayCommand<RestaurantAppDbContext>((db) =>
+            AddDishCommand = new RelayCommand(() =>
             {
-                db.Dishes.Add(Dish);
-                db.SaveChanges();
+                Db.Dishes.Add(Dish);
+                Db.SaveChanges();
             });
             AddImage = new RelayCommand(() =>
             {

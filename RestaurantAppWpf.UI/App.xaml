@@ -14,6 +14,8 @@
                 <ResourceDictionary Source="Styles/FieldTextBox.xaml"/>
                 <ResourceDictionary Source="Styles/AddButton.xaml"/>
                 <ResourceDictionary Source="Styles/FieldText.xaml"/>
+                <ResourceDictionary Source="Styles/RoundedButton.xaml"/>
+                <ResourceDictionary Source="Styles/ListBoxItemText.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>
@@ -23,6 +25,9 @@
             </DataTemplate>
             <DataTemplate DataType="{x:Type viewModel:SettingViewModel}">
                 <view:SettingView/>
+            </DataTemplate>
+            <DataTemplate DataType="{x:Type viewModel:CartViewModel}">
+                <view:CartView/>
             </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>

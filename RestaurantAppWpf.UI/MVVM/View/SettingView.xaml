@@ -47,8 +47,7 @@
                     Margin="0,15,15,0"
                     HorizontalAlignment="Right"
                     Style="{StaticResource AddButtonStyle}"
-                    Command="{Binding AddTypeDishCommand}"
-                    CommandParameter="{Binding Db}" Cursor="Hand"/>
+                    Command="{Binding AddTypeDishCommand}"/>
         </StackPanel>
         <StackPanel Grid.Column="0"
                     Grid.Row="1">
@@ -103,8 +102,7 @@
                             HorizontalAlignment="Right"
                             VerticalAlignment="Center"
                             Style="{StaticResource AddButtonStyle}"
-                            Command="{Binding AddDishCommand}"
-                            CommandParameter="{Binding Db}" Cursor="Hand"/>
+                            Command="{Binding AddDishCommand}"/>
                 </StackPanel>
             </WrapPanel>
         </StackPanel>

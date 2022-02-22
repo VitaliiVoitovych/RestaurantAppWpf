@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using RestaurantAppWpf.BL.EF;
 
@@ -11,9 +12,10 @@ using RestaurantAppWpf.BL.EF;
 namespace RestaurantAppWpf.BL.Migrations
 {
     [DbContext(typeof(RestaurantAppDbContext))]
-    partial class RestaurantAppDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220222120422_SecondMigration")]
+    partial class SecondMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -22,13 +24,13 @@ namespace RestaurantAppWpf.BL.Migrations
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder, 1L, 1);
 
-            modelBuilder.Entity("RestaurantAppWpf.BL.Models.CartItem", b =>
+            modelBuilder.Entity("RestaurantAppWpf.BL.Models.Cart", b =>
                 {
-                    b.Property<int>("CartItemId")
+                    b.Property<int>("CartId")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int");
 
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartItemId"), 1L, 1);
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("CartId"), 1L, 1);
 
                     b.Property<int>("Count")
                         .HasColumnType("int");
@@ -36,11 +38,11 @@ namespace RestaurantAppWpf.BL.Migrations
                     b.Property<int>("DishId")
                         .HasColumnType("int");
 
-                    b.HasKey("CartItemId");
+                    b.HasKey("CartId");
 
                     b.HasIndex("DishId");
 
-                    b.ToTable("Cart");
+                    b.ToTable("Carts");
                 });
 
             modelBuilder.Entity("RestaurantAppWpf.BL.Models.Customer", b =>
@@ -164,10 +166,10 @@ namespace RestaurantAppWpf.BL.Migrations
                     b.ToTable("TypeDishes");
                 });
 
-            modelBuilder.Entity("RestaurantAppWpf.BL.Models.CartItem", b =>
+            modelBuilder.Entity("RestaurantAppWpf.BL.Models.Cart", b =>
                 {
                     b.HasOne("RestaurantAppWpf.BL.Models.Dish", "Dish")
-                        .WithMany("Cart")
+                        .WithMany("Carts")
                         .HasForeignKey("DishId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
@@ -223,7 +225,7 @@ namespace RestaurantAppWpf.BL.Migrations
 
             modelBuilder.Entity("RestaurantAppWpf.BL.Models.Dish", b =>
                 {
-                    b.Navigation("Cart");
+                    b.Navigation("Carts");
 
                     b.Navigation("Payments");
                 });

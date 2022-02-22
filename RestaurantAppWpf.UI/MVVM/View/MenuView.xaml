@@ -5,6 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RestaurantAppWpf.UI.MVVM.View"
              xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+             xmlns:uc="clr-namespace:RestaurantAppWpf.UI.UserControls"
              mc:Ignorable="d" 
              d:DesignHeight="430" d:DesignWidth="650">
     <UserControl.DataContext>
@@ -16,49 +17,92 @@
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
             <RowDefinition/>
             <RowDefinition Height="70"/>
         </Grid.RowDefinitions>
-        <StackPanel VerticalAlignment="Center">
+        <StackPanel VerticalAlignment="Center"
+                    Grid.ColumnSpan="2">
+            <TextBlock Text="Меню"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel VerticalAlignment="Center"
+                    Grid.Row="1">
             <WrapPanel>
                 <TextBlock Text="Назва"
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                 <TextBox Margin="10,15,0,0"
+                         IsReadOnly="True"
                          Text="{Binding Path=CurrentDish.Name}"
-                         Style="{StaticResource FieldTextBoxStyle}"/>
-                <TextBlock Text="Тип"
-                           Margin="15,15,0,0"
-                           Style="{StaticResource FieldTextStyle}"/>
-                <TextBox Margin="10,15,0,0" 
-                         Text="{Binding Path=CurrentDish.TypeDish.Name}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
                 <TextBlock Text="Кілокалорії"
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                 <TextBox Margin="10,15,0,0" 
+                         IsReadOnly="True"
                          Text="{Binding Path=CurrentDish.Kilocalories}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
                 <TextBlock Text="Вага, г"
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
-                <TextBox Margin="10,15,0,0" 
+                <TextBox Margin="10,15,0,0"
+                         IsReadOnly="True"
                          Text="{Binding Path=CurrentDish.Weight}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
                 <TextBlock Text="Ціна"
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                 <TextBox Margin="10,15,0,0" 
+                         IsReadOnly="True"
                          Text="{Binding CurrentDish.Price}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </WrapPanel>
         </StackPanel>
         <StackPanel VerticalAlignment="Center"
-                    Grid.Column="1">
-            <Image Grid.Column="1"
-                   Width="250"
-                   Height="250"
+                    Grid.Column="1"
+                    Grid.Row="1">
+            <Border CornerRadius="10"
+                    Background="#483434"
+                    Margin="5,0">
+                <Image Grid.Column="1"
+                   Width="215"
+                   Height="190"
                    Source="{Binding Path=CurrentDish.Image}"/>
+            </Border>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal"
+                    Grid.Row="2">
+            <uc:IconButton Icon="/Icons/left-arrow.png"
+                           Background="#483434"
+                           Margin="10,0,0,0"
+                           Style="{StaticResource RoundedButtonStyle}"
+                           Command="{Binding PrevBtnCommand}"/>
+            <uc:IconButton Icon="/Icons/right-arrow.png"
+                           Background="#483434"
+                           Margin="10,0,0,0"
+                           Style="{StaticResource RoundedButtonStyle}"
+                           Command="{Binding NextBtnCommand}"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+            <TextBlock Text="Кількість"
+                       Width="Auto"
+                           Margin="15,15,0,0"
+                           Style="{StaticResource FieldTextStyle}"/>
+            <TextBox Margin="5,15,0,0"
+                         Width="35"
+                         Text="{Binding Count}"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            <Button Content="У кошик"
+                    Margin="15,15,15,0"
+                    HorizontalAlignment="Right"
+                    Style="{StaticResource AddButtonStyle}"
+                    Command="{Binding AddToCartCommand}" Cursor="Hand"/>
         </StackPanel>
     </Grid>
 </UserControl>

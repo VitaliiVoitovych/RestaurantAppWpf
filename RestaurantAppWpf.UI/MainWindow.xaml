@@ -53,7 +53,7 @@
                     <uc:IconButton HorizontalAlignment="Right"
                                    Icon="/Icons/setting.png"
                                    Style="{StaticResource HeaderSettingButtonStyle}"
-                                   Command="{Binding SettingCommand}"/>
+                                   Command="{Binding SettingCommand}" Cursor="Hand"/>
                 </DockPanel>
             </Border>
             <Border CornerRadius="0,0,0,30"
@@ -71,7 +71,8 @@
                                    Command="{Binding MenuCommand}"/>
                     <uc:MenuButton Content="Кошик"
                                    Image="/Icons/cart.png"
-                                   Style="{StaticResource MenuButtonStyle}" Cursor="Hand"/>
+                                   Style="{StaticResource MenuButtonStyle}" Cursor="Hand"
+                                   Command="{Binding CartCommand}"/>
                 </StackPanel>
             </Border>
             <ContentControl Grid.Column="1"

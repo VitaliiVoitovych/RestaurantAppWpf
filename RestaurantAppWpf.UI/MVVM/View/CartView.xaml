@@ -1,0 +1,80 @@
+﻿<UserControl x:Class="RestaurantAppWpf.UI.MVVM.View.CartView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:RestaurantAppWpf.UI.MVVM.View"
+             xmlns:uc="clr-namespace:RestaurantAppWpf.UI.UserControls"
+             xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+             mc:Ignorable="d" 
+             d:DesignHeight="430" d:DesignWidth="650">
+    <UserControl.DataContext>
+        <viewModel:CartViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70"/>
+            <RowDefinition/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="3.2*"/>
+            <ColumnDefinition Width="2*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel Grid.ColumnSpan="2">
+            <TextBlock Text="Кошик"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+        <Border CornerRadius="15"
+                Grid.Row="1"
+                Background="#483434"
+                Margin="45,23">
+            <ListBox Background="Transparent"
+                     BorderThickness="0"
+                     Margin="25,15"
+                     ItemsSource="{Binding Carts}">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <StackPanel Orientation="Horizontal"
+                                    VerticalAlignment="Center">
+                            <TextBox Text="{Binding Dish.Name}"
+                                     Width="175"
+                                     IsReadOnly="True"
+                                     Style="{StaticResource ListBoxItemTextBoxStyle}"/>
+                            <TextBox Text="{Binding Path=Count, UpdateSourceTrigger=PropertyChanged}"
+                                     Width="55"
+                                     Margin="15,0,0,0"
+                                     Style="{StaticResource ListBoxItemTextBoxStyle}"/>
+                        </StackPanel>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+            </ListBox>
+        </Border>
+        <StackPanel Grid.Row="1"
+                    Grid.Column="1"
+                    VerticalAlignment="Bottom"
+                    Margin="0,0,0,35">
+            <StackPanel Orientation="Horizontal"
+                        Margin="0,15,0,0">
+                <TextBlock Text="До оплати"
+                           Margin="10,0,0,0"
+                           Width="Auto"
+                           Style="{StaticResource FieldTextStyle}"/>
+                <TextBox Text="{Binding PriceAll}"
+                         IsReadOnly="True"
+                         Width="100"
+                         Margin="35,0,0,0"
+                         Style="{StaticResource FieldTextBoxStyle}"/>
+            </StackPanel>
+            <StackPanel Margin="0,15,0,0">
+                <Button Content="Оплатити"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Style="{StaticResource AddButtonStyle}"
+                        Command="{Binding PaymentCommand}" Cursor="Hand"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</UserControl>

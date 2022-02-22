@@ -10,12 +10,15 @@
   <ItemGroup>
     <None Remove="Icons\cart.png" />
     <None Remove="Icons\home.png" />
+    <None Remove="Icons\left-arrow.png" />
     <None Remove="Icons\menu.png" />
     <None Remove="Icons\restaurant.png" />
+    <None Remove="Icons\right-arrow.png" />
     <None Remove="Icons\setting.png" />
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="6.0.2" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="6.0.2">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
@@ -30,8 +33,10 @@
   <ItemGroup>
     <Resource Include="Icons\cart.png" />
     <Resource Include="Icons\home.png" />
+    <Resource Include="Icons\left-arrow.png" />
     <Resource Include="Icons\menu.png" />
     <Resource Include="Icons\restaurant.png" />
+    <Resource Include="Icons\right-arrow.png" />
     <Resource Include="Icons\setting.png" />
   </ItemGroup>
 
