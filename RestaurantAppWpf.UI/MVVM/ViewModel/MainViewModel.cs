@@ -1,5 +1,6 @@
 ﻿using RestaurantAppWpf.BL.EF;
 using RestaurantAppWpf.UI.Core;
+using RestaurantAppWpf.UI.MVVM.View;
 using System.Windows;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
@@ -17,31 +18,25 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             }
         }
 
-        public HomeViewModel HomeVM { get; }
-        public MenuViewModel MenuVM { get; }
-        public SettingViewModel SettingVM { get; }
-        public CartViewModel CartVM { get; set; } 
+        public HomeViewModel HomeVM { get; } = new HomeViewModel();
+        public MenuViewModel MenuVM { get; } = new MenuViewModel();
+        public SettingViewModel SettingVM { get; } = new SettingViewModel();
+        public CartViewModel CartVM { get; set; } = new CartViewModel();
+        public LoginViewModel LoginVM { get; set; } = new LoginViewModel();
         public RelayCommand HomeCommand { get; }
         public RelayCommand MenuCommand { get; }
         public RelayCommand SettingCommand { get; }
         public RelayCommand CartCommand { get; }
-        public RelayCommand<Window> CloseCommand { get; }
-        public RelayCommand<Window> MinimizeCommand { get; }
 
         public MainViewModel()
         {
-            HomeVM = new HomeViewModel();
-            MenuVM = new MenuViewModel();
-            SettingVM = new SettingViewModel();
-            CartVM = new CartViewModel();
             CurrentView = HomeVM;
+            LoginView loginView = new LoginView();
+            loginView.ShowDialog();
             HomeCommand = new RelayCommand(() => CurrentView = HomeVM);
             MenuCommand = new RelayCommand(() => CurrentView = MenuVM);
             SettingCommand = new RelayCommand(() =>  CurrentView = SettingVM);
             CartCommand = new RelayCommand(() => CurrentView = CartVM);
-            CloseCommand = new RelayCommand<Window>((window) => window.Close());
-            MinimizeCommand = new RelayCommand<Window>((window) => 
-                window.WindowState = WindowState.Minimized);
         }
     }
 }

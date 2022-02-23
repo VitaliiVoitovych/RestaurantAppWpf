@@ -4,6 +4,34 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:RestaurantAppWpf.UI.MVVM.View"
+             xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
+             d:DesignHeight="430" d:DesignWidth="650">
+    <UserControl.DataContext>
+        <viewModel:HomeViewModel/>
+    </UserControl.DataContext>
+    <Grid>
+        <StackPanel>
+            <TextBlock Text="Вітаємо вас"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=Customer.FirstName}"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=Customer.LastName}"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+            <TextBlock Text="{Binding Path=TableNumber}"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"
+                       HorizontalAlignment="Center"/>
+        </StackPanel>
+    </Grid>
 </UserControl>

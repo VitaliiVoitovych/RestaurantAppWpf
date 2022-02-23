@@ -3,6 +3,7 @@ using RestaurantAppWpf.BL.Models;
 using RestaurantAppWpf.UI.Core;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using System.Windows.Media.Imaging;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
@@ -55,13 +56,16 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             });
             AddToCartCommand = new RelayCommand(() =>
             {
-                CartItem cartItem = new CartItem
+                if (Count != 0)
                 {
-                    Dish = CurrentDish,
-                    Count = Count
-                };
-                Db.Cart.Add(cartItem);
-                Db.SaveChanges();
+                    CartItem cartItem = new CartItem
+                    {
+                        Dish = CurrentDish,
+                        Count = Count
+                    };
+                    Db.Cart.Add(cartItem);
+                    Db.SaveChanges();
+                }
             });
 
         }

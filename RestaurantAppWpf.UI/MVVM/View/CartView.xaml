@@ -13,7 +13,7 @@
     </UserControl.DataContext>
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="50"/>
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
@@ -68,10 +68,18 @@
                          Margin="35,0,0,0"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
-            <StackPanel Margin="0,15,0,0">
+            <StackPanel Margin="0,15,0,0"
+                        Orientation="Horizontal">
+                <Button Content="Оновити кошик"
+                        HorizontalAlignment="Center"
+                        VerticalAlignment="Center"
+                        Width="125"
+                        Style="{StaticResource AddButtonStyle}"
+                        Command="{Binding UpdateCartCommand}" Cursor="Hand"/>
                 <Button Content="Оплатити"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
+                        Margin="15,0,0,0"
                         Style="{StaticResource AddButtonStyle}"
                         Command="{Binding PaymentCommand}" Cursor="Hand"/>
             </StackPanel>

@@ -25,6 +25,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         }
         
         public RelayCommand PaymentCommand { get; }
+        public RelayCommand UpdateCartCommand { get; }
 
         public CartViewModel()
         {
@@ -35,6 +36,20 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             PaymentCommand = new RelayCommand(() =>
             {
                 Carts.Clear();
+                Db.SaveChanges();
+                PriceAll = GetAll();
+            });
+            UpdateCartCommand = new RelayCommand(() =>
+            {
+                List<CartItem> cartItems = new List<CartItem>();
+                foreach (var cartItem in Carts)
+                {
+                    if (cartItem.Count == 0)
+                    {
+                        cartItems.Add(cartItem);
+                    }
+                }
+                Db.Cart.RemoveRange(cartItems);
                 Db.SaveChanges();
                 PriceAll = GetAll();
             });
