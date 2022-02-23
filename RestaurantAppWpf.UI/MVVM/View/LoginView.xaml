@@ -44,13 +44,13 @@
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                     <TextBox Margin="10,0,0,0"
-                             Text="{Binding Path=Customer.LastName,UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Path=LoginCustomer.LastName,UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
                     <TextBlock Text="Ім'я"
                            Margin="15,10,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                     <TextBox Margin="10,0,0,0"
-                             Text="{Binding Path=Customer.FirstName, UpdateSourceTrigger=PropertyChanged}"
+                             Text="{Binding Path=LoginCustomer.FirstName, UpdateSourceTrigger=PropertyChanged}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
                     <TextBlock Text="Пароль"
                            Margin="15,10,0,0"
@@ -66,14 +66,13 @@
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                             Margin="0,0,3,0"
-                        IsCancel="True"
                         Style="{StaticResource AddButtonStyle}"
                         Command="{Binding Path=RegistrationCommand}"/>
                     <Button Content="Вхід"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                         Margin="3,0,0,0"
-                        IsCancel="False"
+                        IsDefault="True"
                         Style="{StaticResource AddButtonStyle}" 
                         Command="{Binding Path=LoginCommand}"
                         CommandParameter="{Binding ElementName=LoginForm}" Cursor="Hand"/>

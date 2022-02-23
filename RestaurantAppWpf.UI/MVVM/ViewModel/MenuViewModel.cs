@@ -58,6 +58,15 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             {
                 if (Count != 0)
                 {
+                    if (!Db.Cart.Any())
+                    {
+                        Order = new Order()
+                        {
+                            CustomerId = Customer.CustomerId,
+                            TableNumber = TableNumber,
+                            OrderDate = System.DateTime.Now
+                        };
+                    }
                     CartItem cartItem = new CartItem
                     {
                         Dish = CurrentDish,

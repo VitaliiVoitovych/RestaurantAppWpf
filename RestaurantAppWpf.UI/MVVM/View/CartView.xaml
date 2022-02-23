@@ -68,21 +68,14 @@
                          Margin="35,0,0,0"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
-            <StackPanel Margin="0,15,0,0"
-                        Orientation="Horizontal">
-                <Button Content="Оновити кошик"
-                        HorizontalAlignment="Center"
-                        VerticalAlignment="Center"
-                        Width="125"
-                        Style="{StaticResource AddButtonStyle}"
-                        Command="{Binding UpdateCartCommand}" Cursor="Hand"/>
+            <DockPanel Margin="0,15,0,0">
                 <Button Content="Оплатити"
-                        HorizontalAlignment="Center"
+                        HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Margin="15,0,0,0"
+                        Margin="0,0,15,0"
                         Style="{StaticResource AddButtonStyle}"
                         Command="{Binding PaymentCommand}" Cursor="Hand"/>
-            </StackPanel>
+            </DockPanel>
         </StackPanel>
     </Grid>
 </UserControl>

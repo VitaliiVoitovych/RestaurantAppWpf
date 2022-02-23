@@ -35,24 +35,53 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             PriceAll = GetAll();
             PaymentCommand = new RelayCommand(() =>
             {
-                Carts.Clear();
-                Db.SaveChanges();
-                PriceAll = GetAll();
-            });
-            UpdateCartCommand = new RelayCommand(() =>
-            {
-                List<CartItem> cartItems = new List<CartItem>();
-                foreach (var cartItem in Carts)
+                Update();
+                if (Order != null)
                 {
-                    if (cartItem.Count == 0)
+                    DateTime paymentDate = DateTime.Now;
+                    Db.Orders.Add(Order);
+                    Db.SaveChanges();
+                    foreach (var cartItems in Carts)
                     {
-                        cartItems.Add(cartItem);
+                        if (cartItems.Count > 0)
+                        {
+                            for (int i = 0; i < cartItems.Count; i++)
+                            {
+                                Payment payment = new Payment()
+                                {
+                                    DishId = cartItems.DishId,
+                                    OrderId = Order.OrderId,
+                                    PaymentDate = paymentDate
+                                };
+                                Db.Payments.Add(payment);
+                            }
+                        }
                     }
+                    Carts.Clear();
+                    Db.SaveChanges();
+                    PriceAll = GetAll();
+                    Order = null;
                 }
-                Db.Cart.RemoveRange(cartItems);
-                Db.SaveChanges();
-                PriceAll = GetAll();
             });
+        }
+
+        public void Update()
+        {
+            List<CartItem> cartItems = new List<CartItem>();
+            foreach (var cartItem in Carts)
+            {
+                if (cartItem.Count == 0)
+                {
+                    cartItems.Add(cartItem);
+                }
+            }
+            Db.Cart.RemoveRange(cartItems);
+            if (Carts.Count == 0)
+            {
+                Order = null;
+            }
+            Db.SaveChanges();
+            PriceAll = GetAll();
         }
 
         public decimal GetAll()

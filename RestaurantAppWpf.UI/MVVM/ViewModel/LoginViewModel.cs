@@ -12,6 +12,16 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
     public class LoginViewModel : BaseViewModel
     {
         public ObservableCollection<Customer> Customers { get; }
+        private Customer loginCustomer;
+        public Customer LoginCustomer
+        {
+            get => loginCustomer;
+            set
+            {
+                loginCustomer = value;
+                OnPropertyChanged();
+            }
+        }
         private string password;
         public string Password
         {
@@ -27,6 +37,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         public LoginViewModel()
         {
             Db.Customers.Load();
+            LoginCustomer = new Customer();
             Customers = Db.Customers.Local.ToObservableCollection();
             RegistrationCommand = new RelayCommand(() =>
             {
@@ -36,12 +47,13 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             });
             LoginCommand = new RelayCommand<Window>((window) =>
             {
-                Customer = Customers.SingleOrDefault(c => c.FirstName == Customer.FirstName &&
-                                            c.LastName == Customer.LastName &&
+                Customer = Customers.SingleOrDefault(c => c.FirstName == LoginCustomer.FirstName &&
+                                            c.LastName == LoginCustomer.LastName &&
                                             c.Password == Password);
                 if (Customer != null)
                 {
-                    TableNumber = new Random(DateTime.Now.Millisecond).Next(1, 7);
+                    TableNumber = new Random().Next(1, 7);
+                    window.DialogResult = true;
                     window.Close();
                 }
                 else
