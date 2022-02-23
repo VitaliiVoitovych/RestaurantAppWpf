@@ -3,8 +3,6 @@ using RestaurantAppWpf.BL.Models;
 using RestaurantAppWpf.UI.Core;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Windows;
-using System.Windows.Media.Imaging;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
 {

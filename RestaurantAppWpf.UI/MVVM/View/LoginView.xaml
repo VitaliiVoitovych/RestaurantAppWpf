@@ -62,12 +62,12 @@
                 <StackPanel Orientation="Horizontal"
                             Margin="5,15,5,0"
                             HorizontalAlignment="Center">
-                    <Button Content="Реєестрація"
+                    <Button Content="Реєстрація"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"
                             Margin="0,0,3,0"
                         Style="{StaticResource AddButtonStyle}"
-                        Command="{Binding Path=RegistrationCommand}"/>
+                        Command="{Binding Path=RegistrationCommand}" Cursor="Hand"/>
                     <Button Content="Вхід"
                         HorizontalAlignment="Center"
                         VerticalAlignment="Center"

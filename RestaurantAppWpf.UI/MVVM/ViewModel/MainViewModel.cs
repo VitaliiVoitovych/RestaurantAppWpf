@@ -1,7 +1,5 @@
-﻿using RestaurantAppWpf.BL.EF;
-using RestaurantAppWpf.UI.Core;
+﻿using RestaurantAppWpf.UI.Core;
 using RestaurantAppWpf.UI.MVVM.View;
-using System.Windows;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
 {
@@ -17,7 +15,6 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                 OnPropertyChanged();
             }
         }
-
         public HomeViewModel HomeVM { get; } = new HomeViewModel();
         public MenuViewModel MenuVM { get; } = new MenuViewModel();
         public SettingViewModel SettingVM { get; } = new SettingViewModel();

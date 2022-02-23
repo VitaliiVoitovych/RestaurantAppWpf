@@ -11,27 +11,44 @@
         <viewModel:HomeViewModel/>
     </UserControl.DataContext>
     <Grid>
-        <StackPanel>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="2.5*"/>
+            <ColumnDefinition Width="3*"/>
+        </Grid.ColumnDefinitions>
+        <StackPanel VerticalAlignment="Center"
+                    Grid.Row="1"
+                    Margin="10,0,0,0">
             <TextBlock Text="Вітаємо вас"
                        Foreground="#483434"
                        FontWeight="Bold"
-                       FontSize="32"
-                       HorizontalAlignment="Center"/>
+                       FontSize="48"/>
             <TextBlock Text="{Binding Path=Customer.FirstName}"
                        Foreground="#483434"
                        FontWeight="Bold"
-                       FontSize="32"
-                       HorizontalAlignment="Center"/>
+                       FontSize="24"/>
             <TextBlock Text="{Binding Path=Customer.LastName}"
                        Foreground="#483434"
                        FontWeight="Bold"
-                       FontSize="32"
-                       HorizontalAlignment="Center"/>
-            <TextBlock Text="{Binding Path=TableNumber}"
+                       FontSize="24"/>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="Столик №"
                        Foreground="#483434"
                        FontWeight="Bold"
-                       FontSize="32"
-                       HorizontalAlignment="Center"/>
+                       FontSize="32"/>
+                <TextBlock Text="{Binding Path=TableNumber}"
+                       Foreground="#483434"
+                       FontWeight="Bold"
+                       FontSize="32"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1"
+                    Grid.Row="1"
+                    VerticalAlignment="Center">
+            <Border CornerRadius="20,0,0,20"
+                    Background="#483434">
+                <Image Source="/Images/restaurant-bg.jpg"
+                   Margin="20,20,10,20"/>
+            </Border>
         </StackPanel>
     </Grid>
 </UserControl>

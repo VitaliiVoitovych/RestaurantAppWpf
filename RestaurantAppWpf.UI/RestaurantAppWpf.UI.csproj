@@ -15,6 +15,7 @@
     <None Remove="Icons\restaurant.png" />
     <None Remove="Icons\right-arrow.png" />
     <None Remove="Icons\setting.png" />
+    <None Remove="Images\restaurant-bg.jpg" />
   </ItemGroup>
 
   <ItemGroup>
@@ -38,6 +39,7 @@
     <Resource Include="Icons\restaurant.png" />
     <Resource Include="Icons\right-arrow.png" />
     <Resource Include="Icons\setting.png" />
+    <Resource Include="Images\restaurant-bg.jpg" />
   </ItemGroup>
 
 </Project>
