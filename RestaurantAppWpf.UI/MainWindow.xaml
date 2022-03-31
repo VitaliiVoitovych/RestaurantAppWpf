@@ -6,13 +6,15 @@
         xmlns:local="clr-namespace:RestaurantAppWpf.UI"
         xmlns:uc="clr-namespace:RestaurantAppWpf.UI.UserControls"
         xmlns:viewModel="clr-namespace:RestaurantAppWpf.UI.MVVM.ViewModel"
+        xmlns:core="clr-namespace:RestaurantAppWpf.UI.Core"
         mc:Ignorable="d"
         Height="500" Width="800"
         ResizeMode="NoResize"
         WindowStyle="None"
         Background="Transparent"
         AllowsTransparency="True"
-        x:Name="WindowMain">
+        x:Name="WindowMain"
+        core:DialogCloser.DialogResult="{Binding DialogResult}">
     <Window.DataContext>
         <viewModel:MainViewModel/>
     </Window.DataContext>

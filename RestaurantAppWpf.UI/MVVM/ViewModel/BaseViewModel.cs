@@ -35,7 +35,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             }
         }
 
-        private static Customer customer = new Customer();
+        private static Customer customer;
         public Customer Customer
         {
             get => customer;

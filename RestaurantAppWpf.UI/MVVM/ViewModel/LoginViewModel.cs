@@ -29,7 +29,6 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             set
             {
                 password = PasswordEncryptor.PasswordEncrypt(value);
-                OnPropertyChanged();
             }
         }
         public RelayCommand RegistrationCommand { get; }
