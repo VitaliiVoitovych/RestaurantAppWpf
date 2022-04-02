@@ -11,7 +11,6 @@
         public double Weight { get; set; }
         public decimal Price { get; set; }
         public List<Payment> Payments { get; set; }
-        public List<CartItem> Cart { get; set; }
         public override string ToString()
         {
             return $"{Name} : ${Price}";

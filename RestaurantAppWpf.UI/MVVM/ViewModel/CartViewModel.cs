@@ -1,18 +1,13 @@
-﻿using Microsoft.EntityFrameworkCore;
-using RestaurantAppWpf.BL.Models;
+﻿using RestaurantAppWpf.BL.Models;
 using RestaurantAppWpf.UI.Core;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
 {
     public class CartViewModel : BaseViewModel
     {
-        public ObservableCollection<CartItem> Carts { get; }
         private decimal priceAll;
         public decimal PriceAll
         {
@@ -30,8 +25,6 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         public CartViewModel()
         {
             Db.Dishes.ToList();
-            Db.Cart.Load();
-            Carts = Db.Cart.Local.ToObservableCollection();
             PriceAll = GetAll();
             PaymentCommand = new RelayCommand(() =>
             {
@@ -41,7 +34,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                     DateTime paymentDate = DateTime.Now;
                     Db.Orders.Add(Order);
                     Db.SaveChanges();
-                    foreach (var cartItems in Carts)
+                    foreach (var cartItems in Cart)
                     {
                         if (cartItems.Count > 0)
                         {
@@ -49,7 +42,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                             {
                                 Payment payment = new Payment()
                                 {
-                                    DishId = cartItems.DishId,
+                                    DishId = cartItems.Dish.DishId,
                                     OrderId = Order.OrderId,
                                     PaymentDate = paymentDate
                                 };
@@ -57,7 +50,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                             }
                         }
                     }
-                    Carts.Clear();
+                    Cart.Clear();
                     Db.SaveChanges();
                     PriceAll = GetAll();
                     Order = null;
@@ -68,15 +61,18 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         public void Update()
         {
             List<CartItem> cartItems = new List<CartItem>();
-            foreach (var cartItem in Carts)
+            foreach (var cartItem in Cart)
             {
                 if (cartItem.Count == 0)
                 {
                     cartItems.Add(cartItem);
                 }
             }
-            Db.Cart.RemoveRange(cartItems);
-            if (Carts.Count == 0)
+            foreach (var item in cartItems)
+            {
+                Cart.Remove(item);
+            }
+            if (Cart.Count == 0)
             {
                 Order = null;
             }
@@ -87,7 +83,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         public decimal GetAll()
         {
             decimal price = 0;
-            foreach (var cartItem in Carts)
+            foreach (var cartItem in Cart)
             {
                 for (int i = 0; i < cartItem.Count; i++)
                 {

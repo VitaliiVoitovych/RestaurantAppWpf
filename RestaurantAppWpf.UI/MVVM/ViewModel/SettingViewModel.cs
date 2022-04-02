@@ -1,6 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Win32;
-using RestaurantAppWpf.BL.EF;
 using RestaurantAppWpf.BL.Models;
 using RestaurantAppWpf.UI.Core;
 using System;
