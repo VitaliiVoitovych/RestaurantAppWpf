@@ -56,7 +56,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             {
                 if (Count != 0)
                 {
-                    if (!Cart.Any())
+                    if (!Cart.Dishes.Any())
                     {
                         Order = new Order()
                         {
@@ -65,13 +65,9 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                             OrderDate = System.DateTime.Now
                         };
                     }
-                    CartItem cartItem = new CartItem
-                    {
-                        Dish = CurrentDish,
-                        Count = Count
-                    };
-                    Cart.Add(cartItem);
+                    Cart.Add(CurrentDish, Count);
                 }
+                Count = 0;
             });
 
         }

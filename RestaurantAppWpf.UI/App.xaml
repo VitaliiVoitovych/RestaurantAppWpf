@@ -16,6 +16,7 @@
                 <ResourceDictionary Source="Styles/FieldText.xaml"/>
                 <ResourceDictionary Source="Styles/RoundedButton.xaml"/>
                 <ResourceDictionary Source="Styles/ListBoxItemText.xaml"/>
+                <ResourceDictionary Source="Styles/ListBoxButton.xaml"/>
             </ResourceDictionary.MergedDictionaries>
             <DataTemplate DataType="{x:Type viewModel:HomeViewModel}">
                 <view:HomeView/>

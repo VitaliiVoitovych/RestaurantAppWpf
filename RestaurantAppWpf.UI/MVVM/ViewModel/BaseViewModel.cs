@@ -1,7 +1,6 @@
 ﻿using RestaurantAppWpf.BL.EF;
 using RestaurantAppWpf.BL.Models;
 using RestaurantAppWpf.UI.Core;
-using System.Collections.ObjectModel;
 using System.Windows;
 
 
@@ -10,7 +9,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
     public abstract class BaseViewModel : ObservableObject
     {
         public RestaurantAppDbContext Db { get; set; } = new RestaurantAppDbContext();
-        public static ObservableCollection<CartItem> Cart { get; } = new ObservableCollection<CartItem>();
+        public static Cart Cart { get; } = new Cart();
         public RelayCommand<Window> CloseCommand { get; }
         public RelayCommand<Window> MinimizeCommand { get; }
         private static int tableNumber;

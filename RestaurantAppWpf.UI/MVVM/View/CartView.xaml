@@ -17,7 +17,7 @@
             <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="3.2*"/>
+            <ColumnDefinition Width="3.7*"/>
             <ColumnDefinition Width="2*"/>
         </Grid.ColumnDefinitions>
         <StackPanel Grid.ColumnSpan="2">
@@ -33,8 +33,9 @@
                 Margin="45,23">
             <ListBox Background="Transparent"
                      BorderThickness="0"
-                     Margin="25,15"
-                     ItemsSource="{Binding Carts}">
+                     Margin="15,15"
+                     ItemsSource="{Binding Cart.Dishes}"
+                     x:Name="cartListBox">
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <StackPanel Orientation="Horizontal"
@@ -47,6 +48,10 @@
                                      Width="55"
                                      Margin="15,0,0,0"
                                      Style="{StaticResource ListBoxItemTextBoxStyle}"/>
+                            <Button Content="X"
+                                    Command="{Binding ElementName=cartListBox, Path=DataContext.RemoveDishCommand}"
+                                    CommandParameter="{Binding}"
+                                    Style="{StaticResource ListBoxButtonStyle}"/>
                         </StackPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
@@ -57,22 +62,22 @@
                     VerticalAlignment="Bottom"
                     Margin="0,0,0,35">
             <StackPanel Orientation="Horizontal"
-                        Margin="0,15,0,0">
+                        Margin="0,15,5,0">
                 <TextBlock Text="До оплати"
                            Margin="10,0,0,0"
                            Width="Auto"
                            Style="{StaticResource FieldTextStyle}"/>
-                <TextBox Text="{Binding PriceAll}"
+                <TextBox Text="{Binding Cart.Price, Mode=OneWay}"
                          IsReadOnly="True"
                          Width="100"
-                         Margin="35,0,0,0"
+                         Margin="20,0,0,0"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <DockPanel Margin="0,15,0,0">
                 <Button Content="Оплатити"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Center"
-                        Margin="0,0,15,0"
+                        Margin="0,0,5,0"
                         Style="{StaticResource AddButtonStyle}"
                         Command="{Binding PaymentCommand}" Cursor="Hand"/>
             </DockPanel>
