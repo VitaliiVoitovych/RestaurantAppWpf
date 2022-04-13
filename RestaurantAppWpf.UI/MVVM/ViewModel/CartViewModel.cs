@@ -13,6 +13,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
         public CartViewModel()
         {
             Db.Dishes.ToList();
+            Cart.UpdatePrice();
             PaymentCommand = new RelayCommand(() =>
             {
                 if (Order != null)
@@ -31,6 +32,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                         Db.Payments.Add(payment);
                     }
                     Cart.Clear();
+                    Cart.UpdatePrice();
                     Db.SaveChanges();
                     Order = null;
                 }
@@ -38,8 +40,8 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             RemoveDishCommand = new RelayCommand<CartItem>((cartItem) =>
             {
                 Cart.Dishes.Remove(cartItem);
+                Cart.UpdatePrice();
             });
         }
-        // TODO: Оновлення кошика при нульовій кількості елементів
     }
 }

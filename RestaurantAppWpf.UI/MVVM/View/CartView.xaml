@@ -33,7 +33,7 @@
                 Margin="45,23">
             <ListBox Background="Transparent"
                      BorderThickness="0"
-                     Margin="15,15"
+                     Margin="20,15"
                      ItemsSource="{Binding Cart.Dishes}"
                      x:Name="cartListBox">
                 <ListBox.ItemTemplate>
@@ -49,6 +49,7 @@
                                      Margin="15,0,0,0"
                                      Style="{StaticResource ListBoxItemTextBoxStyle}"/>
                             <Button Content="X"
+                                    Margin="9,0,0,0"
                                     Command="{Binding ElementName=cartListBox, Path=DataContext.RemoveDishCommand}"
                                     CommandParameter="{Binding}"
                                     Style="{StaticResource ListBoxButtonStyle}"/>
@@ -63,14 +64,14 @@
                     Margin="0,0,0,35">
             <StackPanel Orientation="Horizontal"
                         Margin="0,15,5,0">
-                <TextBlock Text="До оплати"
+                <TextBlock Text="До оплати$"
                            Margin="10,0,0,0"
                            Width="Auto"
                            Style="{StaticResource FieldTextStyle}"/>
-                <TextBox Text="{Binding Cart.Price, Mode=OneWay}"
+                <TextBox Text="{Binding Cart.Price}"
                          IsReadOnly="True"
                          Width="100"
-                         Margin="20,0,0,0"
+                         Margin="10,0,0,0"
                          Style="{StaticResource FieldTextBoxStyle}"/>
             </StackPanel>
             <DockPanel Margin="0,15,0,0">

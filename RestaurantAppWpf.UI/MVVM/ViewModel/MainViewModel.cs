@@ -1,5 +1,7 @@
-﻿using RestaurantAppWpf.UI.Core;
+﻿using Microsoft.EntityFrameworkCore;
+using RestaurantAppWpf.UI.Core;
 using RestaurantAppWpf.UI.MVVM.View;
+using System.Threading.Tasks;
 using System.Windows;
 
 namespace RestaurantAppWpf.UI.MVVM.ViewModel
@@ -40,6 +42,10 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
 
         public MainViewModel()
         {
+            Task.Run(() =>
+            {
+                Db.Dishes.Load();
+            });
             CurrentView = HomeVM;
             LoginView loginView = new LoginView();
             if (loginView.ShowDialog() == false)

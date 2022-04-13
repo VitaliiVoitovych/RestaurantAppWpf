@@ -82,7 +82,7 @@
                 <TextBox Margin="10,15,0,0" 
                          Text="{Binding Path=Dish.Weight}"
                          Style="{StaticResource FieldTextBoxStyle}"/>
-                <TextBlock Text="Ціна"
+                <TextBlock Text="Ціна, $"
                            Margin="15,15,0,0"
                            Style="{StaticResource FieldTextStyle}"/>
                 <TextBox Margin="10,15,0,0" 

@@ -28,7 +28,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             get => password;
             set
             {
-                password = PasswordEncryptor.PasswordEncrypt(value);
+                password = value;
             }
         }
         public RelayCommand RegistrationCommand { get; }
@@ -40,15 +40,25 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
             Customers = Db.Customers.Local.ToObservableCollection();
             RegistrationCommand = new RelayCommand(() =>
             {
-                Customer.Password = Password;
-                Db.Customers.Add(Customer);
-                Db.SaveChanges();
+                LoginCustomer.Password = PasswordEncryptor.PasswordEncrypt(Password);
+                Customer = Customers.SingleOrDefault(c => c.FirstName == LoginCustomer.FirstName &&
+                                            c.LastName == LoginCustomer.LastName &&
+                                            c.Password == PasswordEncryptor.PasswordEncrypt(Password));
+                if (Customer != null)
+                {
+                    MessageBox.Show("Такий користувач вже зареєстрований");
+                }
+                else
+                {
+                    Db.Customers.Add(LoginCustomer);
+                    Db.SaveChanges();
+                }
             });
             LoginCommand = new RelayCommand<Window>((window) =>
             {
                 Customer = Customers.SingleOrDefault(c => c.FirstName == LoginCustomer.FirstName &&
                                             c.LastName == LoginCustomer.LastName &&
-                                            c.Password == Password);
+                                            c.Password == PasswordEncryptor.PasswordEncrypt(Password));
                 if (Customer != null)
                 {
                     TableNumber = new Random().Next(1, 7);
@@ -57,7 +67,7 @@ namespace RestaurantAppWpf.UI.MVVM.ViewModel
                 }
                 else
                 {
-                    MessageBox.Show("Error");
+                    MessageBox.Show("Такого користувача ще не зареєстровано");
                 }
             });
         }

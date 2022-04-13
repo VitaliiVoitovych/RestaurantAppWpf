@@ -1,15 +1,18 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace RestaurantAppWpf.BL.Models
+﻿namespace RestaurantAppWpf.BL.Models
 {
-    public class CartItem
+    public class CartItem : ObservableObject
     {
         public Dish Dish { get; set; }
-        public int Count { get; set; }
+        private int count;
+        public int Count
+        {
+            get => count;
+            set
+            {
+                count = value;
+                OnPropertyChanged();
+            }
+        }
         public CartItem(Dish dish, int count)
         {
             Dish = dish;

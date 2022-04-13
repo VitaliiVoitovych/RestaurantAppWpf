@@ -1,13 +1,49 @@
 ﻿using System.Collections;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 
 namespace RestaurantAppWpf.BL.Models
 {
-    public class Cart : IEnumerable
+    public class Cart : ObservableObject,IEnumerable
     {
         public ObservableCollection<CartItem> Dishes { get; } = new ObservableCollection<CartItem>();
-        public decimal Price => GetAll().Sum(d => d.Price);
+        private decimal price;
+        public decimal Price
+        {
+            get => price;
+            set
+            {
+                price = value;
+                OnPropertyChanged();
+            }
+        }
+        public Cart()
+        {
+            Dishes.CollectionChanged += Dishes_CollectionChanged;
+        }
+
+        private void Dishes_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.NewItems != null)
+                foreach (var item in e.NewItems.Cast<CartItem>())
+                    item.PropertyChanged += OnChanged;
+
+            if (e.OldItems != null)
+                foreach (var item in e.OldItems.Cast<CartItem>())
+                    item.PropertyChanged -= OnChanged;
+        }
+
+        private void OnChanged(object sender, PropertyChangedEventArgs e)
+        {
+            if (sender is CartItem c && c.Count <= 0)
+            {
+                Dishes.Remove(c);
+            }
+            UpdatePrice();
+        }
+
         public void Clear() => Dishes.Clear();
+        public void UpdatePrice() => Price = GetAll().Sum(d => d.Price);
         public void Add(Dish dish, int count)
         {
             var cartItem = Dishes.FirstOrDefault(c => c.Dish.Name == dish.Name);
@@ -21,13 +57,12 @@ namespace RestaurantAppWpf.BL.Models
             }
         }
 
-        private List<Dish> GetAll()
+        private ObservableCollection<Dish> GetAll()
         {
-            var dishes = new List<Dish>();
+            var dishes = new ObservableCollection<Dish>();
             foreach (Dish dish in this)
             {
                 dishes.Add(dish);
-
             }
             return dishes;
         }
